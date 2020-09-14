@@ -125,11 +125,11 @@ public class JudgeCommand {
         long length=Long.parseLong(t_Lifetime2);
         long currentTime=System.currentTimeMillis();
         long sendTIme=Long.parseLong(a_timeT3);
-        System.out.println(currentTime);
-        System.out.println(sendTIme>=timeBef);
-        System.out.println(sendTIme<=length);
-        System.out.println(currentTime>=timeBef);
-        System.out.println(currentTime<=length);
+        //System.out.println(currentTime);
+        //System.out.println(sendTIme>=timeBef);
+        //System.out.println(sendTIme<=length);
+        //System.out.println(currentTime>=timeBef);
+        //System.out.println(currentTime<=length);
         //if(sendTIme>=timeBef&&sendTIme<=length&&currentTime>=timeBef&&currentTime<=length)return true;
         //else return false;
         if(currentTime<=length)return true;

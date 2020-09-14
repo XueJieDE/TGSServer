@@ -25,7 +25,7 @@ public class ReturnPacket {
     private String kcv;
     private String request;
     private String timeT4;
-    private String replace;
+    //private String replace;
     private String ticketV;
 
     //ticketV
@@ -63,7 +63,9 @@ public class ReturnPacket {
 
     private String SetTicketV()throws Exception{
         //t_kcv=new String();//密钥
+        r.lock();
         t_kcv=DataOption.getRandomKey(64);
+        r.unlock();
         System.out.println("t_Kcv   "+t_kcv);
         t_userId=judgeCommand.t_userId;
         t_ads=judgeCommand.t_ads;
@@ -72,13 +74,15 @@ public class ReturnPacket {
         t_Lifetime4=String.valueOf(System.currentTimeMillis()+60000);//时间长度
 
         r.lock();
+        String instanceKey=DataOption.INSTANCE.key;
+        r.unlock();
         String message= t_kcv+t_userId+t_ads+t_IDv+t_timeT4+t_Lifetime4;//ticketV的加密
         System.out.println("ticket v :"+message);
-        DesEncrypt desEncrypt=new DesEncrypt(message,DataOption.INSTANCE.key);
-        System.out.println(DataOption.INSTANCE.key);
+        DesEncrypt desEncrypt=new DesEncrypt(message,instanceKey);
+        //System.out.println(DataOption.INSTANCE.key);
         desEncrypt.encrypt();
         String ciphertexts= desEncrypt.ciphertexts;
-        r.unlock();
+        //r.unlock();
         return ciphertexts;
     }
 
